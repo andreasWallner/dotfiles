@@ -1,78 +1,89 @@
-set nocompatible
-set invhlsearch
+" Environment {{{
+	set nocompatible
+	scriptencoding utf-8
+	set encoding=utf-8
+	set fileencodings=ucs-bom,utf-8,latin1
+	set termencoding=utf-8
+	" Directories {
+		silent execute '!mkdir -p $HOME/.vimtmp/undo'
+		set undodir=$HOME/.vimtmp/undo/
+		set undofile
 
-syntax on
-set background=dark
-color wombat256mod
-" better command-line completion
-set wildmenu
-set nomodeline
-" Show partial commands in the last line of the screen
-set showcmd
+		set viminfo='50,n$HOME/.vimtmp/viminfo
+	" }
+"}}}
 
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
-set noexpandtab
+"Editing {{{
+	set tabstop=3
+	set shiftwidth=3
+	set softtabstop=3
+	set noexpandtab
+	set autoindent
 
-" no linebreak when over max line width
-set nowrap
-set nolinebreak
-set textwidth=0
+	set formatoptions-=t
+	set cpoptions+=$
 
-set incsearch
-"set cindent
-set autoindent
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,latin1
+	set nowrap
+	set nolinebreak
+	set textwidth=79
 
-set ignorecase
-set smartcase
+	set pastetoggle=<F2>
+	set clipboard=unnamed
+" }}}
+" Visuals {{{
+	set title
+	set wildmenu
+	set wildmode=list:longest
+	set cmdheight=2
+	set showcmd
+	set showmode
+	set showmatch
 
-" only in c++
-iab #i #include
-iab #d #define
-iab dbg logger.message(LL_debug) <<
+	set splitright
+	set splitbelow
 
-autocmd BufWritePre,FileWritePre * :%s/\s\s+$//e
+	set incsearch
+	set ignorecase
+	set smartcase
+	set invhlsearch
 
-set formatoptions-=tc
-set textwidth=79
+	set stl=%f\ %m\ %r%=Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+	set laststatus=2
 
-nnoremap ; :set invhlsearch<CR>
-nmap  ,n :set invhls<CR>:set hls<CR>
+	if has("gui_running")
+		set lbr wrap
+		set guioptions-=m " no menu bar
+		set guioptions-=T " no icon bar
+	endif
+	" Colors {
+		if &term =~ "xterm"
+			set t_Co=256
+		endif
 
-" copy mode + use system clipboard by default
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O><F2>
-set pastetoggle=<F2>
-set clipboard=unnamed
+		syntax on
+		set background=dark
+		let g:molokai_original=1
+		colorscheme molokai
+	" }
+" }}}
+" Maps {{{
+	iab #i #include
+	iab #d #define
+	iab dbg logger.message(LL_debug) <<
 
-" dollar sign at end of "c" command
-set cpoptions+=$
+	nnoremap ; :set invhlsearch<CR>
 
-set ch=2
-" Set the status line the way I like it
-set stl=%f\ %m\ %r%=Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
-set laststatus=2
+	" do not loose selection after changing indentation
+	vnoremap < <gv
+	vnoremap > >gv
 
-hi CursorLine cterm=none ctermbg=darkgrey
+	nmap  ,n :set invhls<CR>:set hls<CR>
+" }}}
+" Autocmds {{{
+	" cleanup spaces at line ends
+	autocmd BufWritePre,FileWritePre * :%s/\s\s+$//e
 
-" add filetypes
-au BufNewFile,BufRead *.twig set filetype=jinja
-
-" do not loose selection after changing indentation
-vnoremap < <gv
-vnoremap > >gv
-
-
-if has("gui_running")
-	set lbr wrap
-	set guioptions-=m " no menu bar
-	set guioptions-=T " no icon bar
-endif
-
-"au VimEnter * RainbowParenthesesToggle
-"au Syntax * RainbowParenthesesLoadRound
-"au Syntax * RainbowParenthesesLoadSquare
-"au Syntax * RainbowParenthesesLoadBraces
+	" add filetypes
+	au BufNewFile,BufRead *.twig set filetype=jinja
+" }}}
+" vim:set foldmarker={{{,}}} foldlevel=2 foldmethod=marker:
