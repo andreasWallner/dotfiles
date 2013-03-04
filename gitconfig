@@ -1,0 +1,31 @@
+[user]
+	name = Andreas Wallner
+	email = A.Wallner@innovative-solutions.at
+
+[core]
+   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[color]
+   ui = auto
+[color "branch"]
+   current = green
+   local = yellow
+   remote = white
+[color "diff"]
+   meta = yellow bold
+   frag = magenta bold
+   old = red bold
+   new = green bold
+   whitespace = red reverse
+[color "status"]
+   added = yellow
+   changed = green
+   untracked = cyan
+
+[alias]
+   st = status
+   ci = commit
+   br = branch
+   co = checkout
+   df = diff
+   lg = log -p
