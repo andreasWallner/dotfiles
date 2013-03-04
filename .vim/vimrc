@@ -77,6 +77,13 @@
 	vnoremap < <gv
 	vnoremap > >gv
 
+	nnoremap <S-Left> :tabprev<CR>
+	nnoremap <S-Right> :tabnext<CR>
+	vnoremap <S-Left> :tabprev<CR>
+	vnoremap <S-Right> :tabnext<CR>
+	inoremap <S-Left> <Esc>:tabprev<CR>
+	inoremap <S-Right> <Esc>:tabnext<CR>
+
 	nmap  ,n :set invhls<CR>:set hls<CR>
 " }}}
 " Autocmds {{{
