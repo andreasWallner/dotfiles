@@ -1,0 +1,78 @@
+set nocompatible
+set invhlsearch
+
+syntax on
+set background=dark
+color wombat256mod
+" better command-line completion
+set wildmenu
+set nomodeline
+" Show partial commands in the last line of the screen
+set showcmd
+
+set tabstop=3
+set shiftwidth=3
+set softtabstop=3
+set noexpandtab
+
+" no linebreak when over max line width
+set nowrap
+set nolinebreak
+set textwidth=0
+
+set incsearch
+"set cindent
+set autoindent
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,latin1
+
+set ignorecase
+set smartcase
+
+" only in c++
+iab #i #include
+iab #d #define
+iab dbg logger.message(LL_debug) <<
+
+autocmd BufWritePre,FileWritePre * :%s/\s\s+$//e
+
+set formatoptions-=tc
+set textwidth=79
+
+nnoremap ; :set invhlsearch<CR>
+nmap  ,n :set invhls<CR>:set hls<CR>
+
+" copy mode + use system clipboard by default
+nnoremap <F2> :set invpaste paste?<CR>
+imap <F2> <C-O><F2>
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" dollar sign at end of "c" command
+set cpoptions+=$
+
+set ch=2
+" Set the status line the way I like it
+set stl=%f\ %m\ %r%=Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
+set laststatus=2
+
+hi CursorLine cterm=none ctermbg=darkgrey
+
+" add filetypes
+au BufNewFile,BufRead *.twig set filetype=jinja
+
+" do not loose selection after changing indentation
+vnoremap < <gv
+vnoremap > >gv
+
+
+if has("gui_running")
+	set lbr wrap
+	set guioptions-=m " no menu bar
+	set guioptions-=T " no icon bar
+endif
+
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
