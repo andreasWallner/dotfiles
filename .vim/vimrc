@@ -1,4 +1,5 @@
 " Environment {{{
+	execute pathogen#infect()
 	set nocompatible
 	scriptencoding utf-8
 	set encoding=utf-8
@@ -67,9 +68,12 @@
 	" }
 " }}}
 " Maps {{{
+	let mapleader=","
+
 	iab #i #include
 	iab #d #define
 	iab dbg logger.message(LL_debug) <<
+	iab lg std::lock_guard<std::mutex> lk(
 
 	nnoremap ; :set invhlsearch<CR>
 
@@ -89,7 +93,10 @@
 	map <D-S-Down> <C-w><C-w>
 	map <D-S-Up> <C-w>W
 
-	nmap  ,n :set invhls<CR>:set hls<CR>
+	nnoremap <leader>n :set invhls<CR>:set hls<CR>
+	vnoremap <leader>s <Esc>:FSHere<CR>
+	nnoremap <leader>s :FSHere<CR>
+	inoremap <leader>s <Esc>:FSHere<CR>
 " }}}
 " Autocmds {{{
 	" cleanup spaces at line ends
@@ -97,5 +104,11 @@
 
 	" add filetypes
 	au BufNewFile,BufRead *.twig set filetype=jinja
+
+	" configure fswitch
+	au! BufEnter *.c   let b:fswitchdst = 'h'     | let b:fswitchlocs = '.'
+	au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = '.'
+	au! BufEnter *.h   let b:fswitchdst = 'c,cpp' | let b:fswitchlocs = '.'
+	au! BufEnter *.hpp let b:fswitchdst = 'cpp'   | let b:fswitchlocs = '.'
 " }}}
 " vim:set foldmarker={{{,}}} foldlevel=2 foldmethod=marker:
