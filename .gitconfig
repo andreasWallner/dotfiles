@@ -30,3 +30,5 @@
    co = checkout
    df = diff
    lg = log -p
+
+	gr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(magenta)<%an>%Creset' --abbrev-commit --date=relative
