@@ -84,6 +84,11 @@
 	inoremap <S-Left> <Esc>:tabprev<CR>
 	inoremap <S-Right> <Esc>:tabnext<CR>
 
+	map <D-S-Right> <C-w>l
+	map <D-S-Left> <C-w>h
+	map <D-S-Down> <C-w><C-w>
+	map <D-S-Up> <C-w>W
+
 	nmap  ,n :set invhls<CR>:set hls<CR>
 " }}}
 " Autocmds {{{
