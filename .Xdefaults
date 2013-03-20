@@ -3,9 +3,9 @@ xterm*termName: xterm-256color
 xterm*foreground: grey
 xterm*background: black
 
-xterm*scrollTtyOutput: false
 xterm*savelines: 8000
 xterm*loginshell: true
+xterm*visualBell: true
 
 xterm*faceName:Liberation Mono
 xterm*faceSize: 10
