@@ -1,11 +1,11 @@
 [user]
-	name = Andreas Wallner
-	email = A.Wallner@innovative-solutions.at
+   name = Andreas Wallner
+   email = A.Wallner@innovative-solutions.at
 
 [core]
    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor=vim
-	pager = less -x3
+   editor=vim
+   pager = less -x3
 
 [color]
    ui = auto
@@ -31,5 +31,7 @@
    co = checkout
    df = diff
    lg = log -p
+   gr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(magenta)<%an>%Creset' --abbrev-commit --date=relative
 
-	gr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(magenta)<%an>%Creset' --abbrev-commit --date=relative
+[branch]
+   autosetuprebase = always
