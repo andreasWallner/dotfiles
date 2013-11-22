@@ -5,7 +5,7 @@ xterm*background: black
 
 xterm*savelines: 8000
 xterm*loginshell: true
-xterm*visualBell: true
+xterm*visualBell: false
 
 xterm*faceName:Liberation Mono
 xterm*faceSize: 10
