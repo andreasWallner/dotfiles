@@ -59,7 +59,7 @@
 	endif
 	" Colors {
 		if &term =~ "xterm"
-			set t_Co=256
+			let &t_Co = 256
 		endif
 
 		syntax on
@@ -88,6 +88,12 @@
 	vnoremap <S-Right> :tabnext<CR>
 	inoremap <S-Left> <Esc>:tabprev<CR>
 	inoremap <S-Right> <Esc>:tabnext<CR>
+	nnoremap <F11> :tabprev<CR>
+	nnoremap <F12> :tabnext<CR>
+	vnoremap <F11> :tabprev<CR>
+	vnoremap <F12> :tabnext<CR>
+	inoremap <F11> <Esc>:tabprev<CR>
+	inoremap <F12> <Esc>:tabnext<CR>
 
 	map <D-S-Right> <C-w>l
 	map <D-S-Left> <C-w>h
@@ -97,11 +103,9 @@
 	nnoremap <leader>n :set invhls<CR>:set hls<CR>
 	vnoremap <leader>s <Esc>:FSHere<CR>
 	nnoremap <leader>s :FSHere<CR>
-	inoremap <leader>s <Esc>:FSHere<CR>
 
 	vnoremap <leader>S <Esc>:FSSplitRight<CR>
 	nnoremap <leader>S :FSSplitRight<CR>
-	inoremap <leader>S <Esc>:FSSplitRight<CR>
 
 	let g:CommandTCancelMap='<Esc>'
 	set wildignore+=*.o,.git,build/**,arm-build/**
@@ -112,6 +116,7 @@
 
 	" add filetypes
 	au BufNewFile,BufRead *.twig set filetype=jinja
+	au BufNewFile,BufRead *.jinja set filetype=jinja
 
 	" configure fswitch
 	au! BufEnter *.c   let b:fswitchdst = 'h'     | let b:fswitchlocs = '.'
